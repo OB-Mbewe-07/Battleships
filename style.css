@@ -4,10 +4,15 @@ body{
 
 .nav{
     display: flex;
-    gap: 2rem;
+    gap: 15rem;
     justify-content: center;
     font-size: 2rem;
     list-style: none;
+}
+
+.nav a:hover{
+    color: coral;
+    transition: color 0.3s ease;
 }
 
 a{
@@ -66,7 +71,6 @@ ul > .list_Item , .btn-click{
     font-weight: 600;
 }
 
-/* From this point onward we are gonna try and get the coordinates going*/
 table tr .head{
     width: 9rem;
 }
@@ -78,6 +82,34 @@ table tr .header:hover{
 table tr th:hover{
     background-color: coral;
 }
+
+.container-inner-selection-area .button-section{
+    display: flex;
+    column-gap: 1.4rem;
+    justify-content: center;
+}
+
+.container-inner-selection-area .button-section div button{
+    background-color: plum;
+}
+
+.countainer-select-fire-Section{
+    display: flex;
+    gap: 1.4rem;
+    justify-content: center;
+    margin: 32px;
+}
+
+.vertical-or-Horizontal{
+    background-color: plum;
+    height: -webkit-fill-available;
+    border-radius: 2px;
+}
+
+
+
+
+
 
 
 
