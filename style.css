@@ -1,0 +1,90 @@
+body{
+   background-color: cornflowerblue; 
+}
+
+.nav{
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    font-size: 2rem;
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: plum;
+}
+
+ul > .list_Item , .btn-click{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.contain-btn{
+    display: flex;
+    justify-content: center;
+}
+
+.btn-click{
+    height: 5rem;
+    width: 17rem;
+    border-radius: 18px;
+    background-color: plum;
+}
+
+.container-menu{
+    justify-content: center;
+}
+
+.container-table{
+    display: grid;
+    grid-template-columns: repeat(2,max-content); /*max content is the maximum the element can be before you would have to wrap*/
+    gap: 32px;
+    justify-content: center;
+    padding: 24px;
+}
+
+.table{
+    border-collapse: collapse;
+    background: white; 
+    border: 2px solid black;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table th, .table td{
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 1px solid black;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table thead th {
+    background: plum;  
+    color: #fff;  
+    font-weight: 600;
+}
+
+/* From this point onward we are gonna try and get the coordinates going*/
+table tr .head{
+    width: 9rem;
+}
+
+table tr .header:hover{
+    color:coral; 
+}
+
+table tr th:hover{
+    background-color: coral;
+}
+
+
+
+
+
+
+
+
+
+
