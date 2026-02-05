@@ -20,16 +20,16 @@ a{
     color: plum;
 }
 
-ul > .list_Item , .btn-click{
+ul > .list_Item , .btn-click , .vertical-or-Horizontal, .table_title{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-.contain-btn{
+.contain-btn, .vertical-or-Horizontal{
     display: flex;
     justify-content: center;
 }
 
-.btn-click{
+.btn-click, .vertical-or-Horizontal{
     height: 5rem;
     width: 17rem;
     border-radius: 18px;
@@ -42,7 +42,7 @@ ul > .list_Item , .btn-click{
 
 .container-table{
     display: grid;
-    grid-template-columns: repeat(2,max-content); /*max content is the maximum the element can be before you would have to wrap*/
+    grid-template-columns: repeat(auto-fit, minmax(400px, max-content));
     gap: 32px;
     justify-content: center;
     padding: 24px;
@@ -105,6 +105,13 @@ table tr th:hover{
     height: -webkit-fill-available;
     border-radius: 2px;
 }
+
+.table_title{
+    color: plum;
+    text-align: center;
+}
+
+
 
 
 
