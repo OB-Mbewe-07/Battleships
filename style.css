@@ -17,6 +17,7 @@ section .main_header{
     margin-left: 2%;
     margin-right: 2%;
     border-radius: 1rem;
+    margin-bottom: 1.8rem;
 }
 
 .spanMenu_Container{
@@ -39,17 +40,25 @@ a{
     color: plum;
 }
 
-
-.contain-btn, .vertical-or-Horizontal{
+.button-section{
     display: flex;
-    justify-content: center;
+    align-items: center;
 }
 
-.btn-click, .vertical-or-Horizontal{
-    height: 5rem;
-    width: 17rem;
-    border-radius: 18px;
+.Orientation_Wrapper button{
     background-color: plum;
+}
+
+.Orientation_Wrapper{
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+}
+
+.countainer-Section-Orientation{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container-menu{
