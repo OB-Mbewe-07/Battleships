@@ -9,15 +9,27 @@ section .main_header{
     font-size: 4rem;
 }
 
-.nav{
+.wrapMenu{
     display: flex;
-    gap: 15rem;
     justify-content: center;
-    font-size: 2rem;
-    list-style: none;
+    max-width: 96%;
+    border: 2px dashed plum;
+    margin-left: 2%;
+    margin-right: 2%;
+    border-radius: 1rem;
 }
 
-.nav a:hover{
+.spanMenu_Container{
+    font-size: xx-large;
+}
+
+.nav .menu_ul{
+    display: flex;
+    justify-content: center;
+    gap: 12rem;
+}
+
+.nav .menu_ul a:hover{
     color: coral;
     transition: color 0.3s ease;
 }
@@ -27,9 +39,6 @@ a{
     color: plum;
 }
 
-ul > .list_Item , .btn-click , .vertical-or-Horizontal, .table_title{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
 
 .contain-btn, .vertical-or-Horizontal{
     display: flex;
