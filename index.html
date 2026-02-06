@@ -7,15 +7,23 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container-menu">
-        <ul class="nav">
-            <li class="list_Item"><a href="index.html" class="link">Game</a></li>
-            <li class="list_Item"><a href="history.html" class="link">History</a></li>
-        </ul>
-
+    <section>
+        <h1 class = "main_header">Battleship</h1>
+    </section>
+    <section>
+        <div class="spanMenu_Container">
+            <nav class="nav">
+                <ul class="menu_ul">
+                    <li class="menu_item">Game</li>
+                    <li class="menu_item">History</li>
+                </ul>
+            </nav>
+        </div>
         <div class="container-inner-selection-area">
-            <!-- Buttons additon should be added right about there-->
             <div class="button-section">
+                <div class="ships_header_container">
+                    <h3 class="ships_header">ships</h3>
+                </div>
                 <div><button class="carrier_ship">Carrier [5]</button></div>
                 <div><button class="battleship_ship">Battleship [4]</button></div>
                 <div><button class="cruiser_ship">Cruiser [3]</button></div>
@@ -23,18 +31,15 @@
                 <div><button class="destroyer_ship">Destroyer [2]</button></div>
             </div>
 
-            <div class="countainer-select-fire-Section">  
-                <div class="contain-btn"><input class = "btn-click" type="button" value="Fire"></div>
-
-                 <div>
-                    <select name="isVertical-or-Horizontal" id="isVertical-or-Horizontal" class="vertical-or-Horizontal">
-                        <option value="Vert">Vertical</option>
-                        <option value="Horizontal">Horizontal</option>
-                    </select>
+            <div class="countainer-Section-Orientation">  
+                <div class = "Orientation_Wrapper">
+                    <div class="vertical_Orientation"><button class="btn_Vertical">Vertical</button></div> 
+                    <div class="horizontal_Orientation"><button class="btn_Horizontal">Horizontal</button></div>     
                 </div>
             </div>   
         </div>
-    </div>
+    </section>
+   
 
     <div class="container-table">
         <div class="table_wrapper">
