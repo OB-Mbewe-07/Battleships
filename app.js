@@ -30,6 +30,8 @@ document.addEventListener('DOMContentLoaded' , () => {
         return String.fromCharCode(64 + value);
     }
 
+    
+
     playerTable.addEventListener("click" , (event) => {
         const cell = event.target;
         
@@ -38,5 +40,18 @@ document.addEventListener('DOMContentLoaded' , () => {
 
         console.log(convertDigitsToLetter(col)+ " "+ row );
     })
+
+    const shipPlacement = (row, col, lengthOfShip, VerticalOrHorizontal) => {
+        for(let count = 0; count < lengthOfShip; count++){
+            let valueRow = row;
+            let valueCol = col;
+
+            if( VerticalOrHorizontal === "Vertical"){
+                valueRow = row + count;
+            }else{
+                valueCol = col + count; 
+            }
+        }
+    }
 
 })
