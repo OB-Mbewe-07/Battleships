@@ -44,14 +44,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const updateTable = (grid, table, isHiddenDisplay) =>{
         for(let iterateThroughRows = 0; iterateThroughRows < grid.length; iterateThroughRows++){
             for(let iterateThroughCols = 0; iterateThroughCols < grid[iterateThroughRows].length; iterateThroughCols++){
-                if(grid[iterateThroughRows][iterateThroughCols] !== null){
-                    const tableRow = table.rows[iterateThroughRows + 1];
-                    const tableCell = tableRow.cells[iterateThroughCols + 1];
+                const cellValue = grid[iterateThroughRows][iterateThroughCols];
+                const tableRow = table.rows[iterateThroughRows + 1];
+                const tableCell = tableRow.cells[iterateThroughCols + 1];
 
-                    if(isHiddenDisplay){
-                        tableCell.classList.add("ship");
-                    }  
+                tableCell.className = "";
+                tableCell.textContent = "";
+
+                if (cellValue === "XX"){
+                    tableCell.classList.add("hit");
+                }else if (cellValue === "O"){
+                    tableCell.textContent = "X";
+                }else if (cellValue !== null && isHiddenDisplay){
+                    tableCell.classList.add("ship");
                 }
+                
             }
         }
     }
@@ -94,4 +101,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     //firing logic
+    const btn_fire = document.querySelector(".Container_btn_Fire button")
+    btn_fire.addEventListener("click", () => {
+        let rowFire , colFire ;
+        do {
+            rowFire = Math.floor(Math.random() * 12);
+            colFire = Math.floor(Math.random() * 12);
+        } while(grid[rowFire][colFire] === "XX" || grid[rowFire][colFire] === "O" );
+
+        if(grid[rowFire][colFire] === 'X'){
+            grid[rowFire][colFire] = "XX";
+        }else{
+            grid[rowFire][colFire] = "O";
+        }
+        updateTable(grid,playerTable,true);
+    })
 });
