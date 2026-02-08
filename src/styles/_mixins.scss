@@ -1,0 +1,9 @@
+@mixin button_style($bg-Colour){
+    width: 100%;
+    height: 4rem;
+    border-radius: 9px;
+    border: 2px dashed plum;
+    color: $bg-Colour;
+    margin-top: 10%;
+    cursor: pointer;
+}
