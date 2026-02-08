@@ -212,3 +212,8 @@ table tr th:hover {
   color: var(--secondary-colour);
   text-align: center;
 }
+
+.ship{
+  background-color: var(--secondary-colour);
+  transition: background-color 0.2s ease;
+}

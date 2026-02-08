@@ -40,6 +40,19 @@ document.addEventListener("DOMContentLoaded", () => {
         return String.fromCharCode(64 + value);
     };
 
+    const updateTable = (grid, table) =>{
+        for(let iterateThroughRows = 0; iterateThroughRows < grid.length; iterateThroughRows++){
+            for(let iterateThroughCols = 0; iterateThroughCols < grid[iterateThroughRows].length; iterateThroughCols++){
+                if(grid[iterateThroughRows][iterateThroughCols] !== null){
+                    const tableRow = table.rows[iterateThroughRows + 1];
+                    const tableCell = tableRow.cells[iterateThroughCols + 1];
+
+                    tableCell.classList.add("ship");
+                }
+            }
+        }
+    }
+
     playerTable.addEventListener("click", (event) => {
         const cell = event.target;
         const row = cell.parentElement.rowIndex;
@@ -54,6 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 grid[row - 1][col + numberOfSquares - 1] = "X";
             }
         }
+
+        updateTable(grid, playerTable);
         console.log(grid);
         console.log(convertDigitsToLetter(col) + " " + row);
     });
