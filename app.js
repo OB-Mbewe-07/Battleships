@@ -35,23 +35,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //ship placement logic
     const playerTable = document.getElementById("left");
+    const EnemyTable = document.getElementById("right")
 
     const convertDigitsToLetter = (value) => {
         return String.fromCharCode(64 + value);
     };
 
-    const updateTable = (grid, table) =>{
+    const updateTable = (grid, table, isHiddenDisplay) =>{
         for(let iterateThroughRows = 0; iterateThroughRows < grid.length; iterateThroughRows++){
             for(let iterateThroughCols = 0; iterateThroughCols < grid[iterateThroughRows].length; iterateThroughCols++){
                 if(grid[iterateThroughRows][iterateThroughCols] !== null){
                     const tableRow = table.rows[iterateThroughRows + 1];
                     const tableCell = tableRow.cells[iterateThroughCols + 1];
 
-                    tableCell.classList.add("ship");
+                    if(isHiddenDisplay){
+                        tableCell.classList.add("ship");
+                    }  
                 }
             }
         }
     }
+
+    let hardcoded_Enemy_Grid = [
+        ['X', 'X', 'X', 'X', null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, 'X', null, null],
+        [null, null, null, null, null, null, null, null, null, 'X', null, null],
+        [null, null, null, null, 'X', 'X', 'X', null, null, 'X', null, null],
+        [null, null, null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null, null, null],
+        ['X', null, null, null, null, null, null, null, null, null, null, 'X'],
+        ['X', null, null, null, null, null, null, null, null, null, null, 'X'],
+        ['X', null, null, null, null, null, null, null, null, null, null, null],
+        ['X', null, null, null, null, null, null, null, null, null, null, null],
+        ['X', null, null, null, null, null, null, null, null, null, null, null]
+    ];
+
+    updateTable(hardcoded_Enemy_Grid,EnemyTable,false);
 
     playerTable.addEventListener("click", (event) => {
         const cell = event.target;
@@ -68,8 +88,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        updateTable(grid, playerTable);
+        updateTable(grid, playerTable, true);
         console.log(grid);
         console.log(convertDigitsToLetter(col) + " " + row);
     });
+
+    //firing logic
 });
