@@ -6,7 +6,7 @@
   --hover-secondary-colour: #8a3f77;
   --tertiary-colour: #e6e9ef;
   --hover-tertiary-colour: ;
-  --hit-color: red; 
+  --hit-color: red;
 }
 
 body {
@@ -214,12 +214,12 @@ table tr th:hover {
   text-align: center;
 }
 
-.ship{
+.ship {
   background-color: var(--secondary-colour);
   transition: background-color 0.2s ease;
 }
 
-.hit{
+.hit {
   background-color: var(--hit-color);
-  transition: background-color 0.2s ease; 
+  transition: background-color 0.2s ease;
 }

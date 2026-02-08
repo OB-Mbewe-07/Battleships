@@ -1,5 +1,5 @@
-@import 'mixins';
+@import "mixins";
 
 .Container_btn_Fire button {
-    @include button_style(#6b2d5c);
+  @include button_style(#6b2d5c);
 }
