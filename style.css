@@ -1,215 +1,214 @@
-:root{
-    /*Reusable elements inside of my css*/
-    --primary-colour: #4A6FA5;
-    --hover-primary-colour: #3F5F8C;
-    --secondary-colour: #6B2D5C;
-    --hover-secondary-colour: #8A3F77;
-    --tertiary-colour: #E6E9EF;
-    --hover-tertiary-colour: ;
+:root {
+  /*Reusable elements inside of my css*/
+  --primary-colour: #4a6fa5;
+  --hover-primary-colour: #3f5f8c;
+  --secondary-colour: #6b2d5c;
+  --hover-secondary-colour: #8a3f77;
+  --tertiary-colour: #e6e9ef;
+  --hover-tertiary-colour: ;
 }
 
-body{
-   background-color: var(--primary-colour);
-   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+body {
+  background-color: var(--primary-colour);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
-section .main_header{
-    text-align: center;
-    color: var(--secondary-colour);
-    margin-bottom: 1px;
-    font-size: 4rem;
+section .main_header {
+  text-align: center;
+  color: var(--secondary-colour);
+  margin-bottom: 1px;
+  font-size: 4rem;
 }
 
-.wrapMenu{
-    display: flex;
-    justify-content: center;
-    max-width: 96%;
+.wrapMenu {
+  display: flex;
+  justify-content: center;
+  max-width: 96%;
 }
 
-.spanMenu_Container{
-    font-size: xx-large;
+.spanMenu_Container {
+  font-size: xx-large;
 }
 
-.nav .menu_ul{
-    display: flex;
-    justify-content: center;
-    gap: 12rem;
+.nav .menu_ul {
+  display: flex;
+  justify-content: center;
+  gap: 12rem;
 }
 
-.nav .menu_ul a{
-    display: inline-block;
+.nav .menu_ul a {
+  display: inline-block;
 }
 
 .menu_ul {
-    list-style: none;
-    color: var(--tertiary-colour);
+  list-style: none;
+  color: var(--tertiary-colour);
 }
 
-.nav .menu_ul a{
-    display: inline-block; /*this is what im using to let the transform function work*/
+.nav .menu_ul a {
+  display: inline-block; /*this is what im using to let the transform function work*/
 }
 
-.nav .menu_ul a:hover{
-    transform: translateY(-4px);
-    transition-property: transform;
-    transition-duration: 0.25s;
-    transition-timing-function: ease;
+.nav .menu_ul a:hover {
+  transform: translateY(-4px);
+  transition-property: transform;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
 }
 
-a{
-    text-decoration: none;
-    color: var(--tertiary-colour);
-
+a {
+  text-decoration: none;
+  color: var(--tertiary-colour);
 }
 
-.container-inner-selection-area{
-    display: flex;
-    justify-content: center;
-    align-items: start;
+.container-inner-selection-area {
+  display: flex;
+  justify-content: center;
+  align-items: start;
 }
 
-.Orientation_Wrapper button{
-    background-color: var(--secondary-colour);
+.Orientation_Wrapper button {
+  background-color: var(--secondary-colour);
 }
 
-.button-section{
-    display: flex;
-    flex-direction: column;
-    row-gap: 1rem;
-    margin: 0% 5% 5% 5%;
-    background-color: var(--secondary-colour);
-    color: var(--tertiary-colour);
-    padding: 0% 4% 4% 4%;
-    border-radius: 9px;
-    border: 2px dashed plum;
+.button-section {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  margin: 0% 5% 5% 5%;
+  background-color: var(--secondary-colour);
+  color: var(--tertiary-colour);
+  padding: 0% 4% 4% 4%;
+  border-radius: 9px;
+  border: 2px dashed plum;
 }
 
-.button-section div{
-    padding-top: 5px;
-    padding-bottom: 5px;
-    width: calc(100% + 1.9rem); /*still needs some work*/
+.button-section div {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: calc(100% + 1.9rem); /*still needs some work*/
 }
 
-.button-section div:hover{
-    background-color: var(--hover-secondary-colour);
+.button-section div:hover {
+  background-color: var(--hover-secondary-colour);
 }
 
-.countainer-Section-Orientation{
-    margin: 0% 5% 5% 5%;  
-    background-color: var(--secondary-colour); 
-    color: var(--tertiary-colour);
-    padding: 0 5% 5% 5%; 
-    border: 2px dashed plum;
-    border-radius: 9px;
-    display:flex;
-    flex-direction: column;
+.countainer-Section-Orientation {
+  margin: 0% 5% 5% 5%;
+  background-color: var(--secondary-colour);
+  color: var(--tertiary-colour);
+  padding: 0 5% 5% 5%;
+  border: 2px dashed plum;
+  border-radius: 9px;
+  display: flex;
+  flex-direction: column;
 }
 
-.Orientation_Wrapper{
-    display: flex;
-    font-size: x-large;
+.Orientation_Wrapper {
+  display: flex;
+  font-size: x-large;
 }
 
-.Orientation_Wrapper select{
-    width: 100%;
-    border-radius: 9px;
-    border: 2px dashed plum;
-    height: 4rem;
-    color: var(--secondary-colour);
+.Orientation_Wrapper select {
+  width: 100%;
+  border-radius: 9px;
+  border: 2px dashed plum;
+  height: 4rem;
+  color: var(--secondary-colour);
 }
 
-.Container_btn_Fire{
-    margin: 4%; 
-    display: flex;
-    justify-content: center;
+.Container_btn_Fire {
+  margin: 4%;
+  display: flex;
+  justify-content: center;
 }
 
-.Container_btn_Fire button{
-    width: 100%;
-    height: 4rem;
-    border-radius: 9px;
-    border: 2px dashed plum;
-    color: var(--secondary-colour);
-    margin-top: 10%;
-    cursor: pointer;
+.Container_btn_Fire button {
+  width: 100%;
+  height: 4rem;
+  border-radius: 9px;
+  border: 2px dashed plum;
+  color: var(--secondary-colour);
+  margin-top: 10%;
+  cursor: pointer;
 }
 
-.Container_btn_Fire button:active{
-    transform: scale(1);
+.Container_btn_Fire button:active {
+  transform: scale(1);
 }
 
-.container-menu{
-    justify-content: center;
+.container-menu {
+  justify-content: center;
 }
 
-.container-table{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, max-content));
-    gap: 32px;
-    justify-content: center;
-    padding: 24px;
+.container-table {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, max-content));
+  gap: 32px;
+  justify-content: center;
+  padding: 24px;
 }
 
-.table{
-    border-collapse: collapse;
-    background: var(--tertiary-colour); 
-    border: 2px solid black;
-    border-radius: 8px;
-    overflow: hidden;
+.table {
+  border-collapse: collapse;
+  background: var(--tertiary-colour);
+  border: 2px solid black;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-.table th, .table td{
-    width: 36px;
-    height: 36px;
-    padding: 0;
-    border: 1px solid black;
-    text-align: center;
-    vertical-align: middle;
+.table th,
+.table td {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid black;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .table thead th {
-    background: var(--secondary-colour);  
-    color: var(--tertiary-colour);  
-    font-weight: 600;
+  background: var(--secondary-colour);
+  color: var(--tertiary-colour);
+  font-weight: 600;
 }
 
-table tr .head{
-    width: 9rem;
+table tr .head {
+  width: 9rem;
 }
 
-table tr .header:hover{
-    color: var(--hover-primary-colour); 
+table tr .header:hover {
+  color: var(--hover-primary-colour);
 }
 
-table tr th:hover{
-    background-color: var(--hover-primary-colour);
+table tr th:hover {
+  background-color: var(--hover-primary-colour);
 }
 
-.container-inner-selection-area .button-section{
-    display: flex;
-    column-gap: 1.4rem;
-    justify-content: center;
+.container-inner-selection-area .button-section {
+  display: flex;
+  column-gap: 1.4rem;
+  justify-content: center;
 }
 
-.container-inner-selection-area .button-section div button{
-    background-color: var(--secondary-colour);
+.container-inner-selection-area .button-section div button {
+  background-color: var(--secondary-colour);
 }
 
-.countainer-select-fire-Section{
-    display: flex;
-    gap: 1.4rem;
-    justify-content: center;
-    margin: 32px;
+.countainer-select-fire-Section {
+  display: flex;
+  gap: 1.4rem;
+  justify-content: center;
+  margin: 32px;
 }
 
-.vertical-or-Horizontal{
-    background-color: var(--secondary-colour);
-    height: -webkit-fill-available;
-    border-radius: 2px;
+.vertical-or-Horizontal {
+  background-color: var(--secondary-colour);
+  height: -webkit-fill-available;
+  border-radius: 2px;
 }
 
-.table_title{
-    color: var(--secondary-colour);
-    text-align: center;
+.table_title {
+  color: var(--secondary-colour);
+  text-align: center;
 }
-
