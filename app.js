@@ -75,6 +75,14 @@ document.addEventListener("DOMContentLoaded", () => {
           grid[row][col + numberOfSquares] = "X";
         }
       } 
+
+      //The assumption is that once we are here the placement is done
+      const AllShips = document.querySelectorAll(".button-section .ship_type");
+      AllShips.forEach((ship) =>{
+        if(ship.textContent.includes(objShips.shipTypes.name)){
+          ship.remove();
+        }
+      });
     }else{
       /*Gonna try and put red squares for a second to show that it doesnt work*/
       let tempCells = [];
