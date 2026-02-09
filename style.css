@@ -14,6 +14,12 @@ body {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
+html, body{
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
 section .main_header {
   text-align: center;
   color: var(--secondary-colour);
@@ -228,10 +234,13 @@ table tr th:hover {
 @media screen and (max-width:600px) {
   .container-inner-selection-area {
     display:block;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .nav .menu_ul {
-    gap: 8rem;
+    gap: 2rem;
+    flex-wrap: wrap;
   }
 
   .table{
