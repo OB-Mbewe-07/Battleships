@@ -1,3 +1,5 @@
+import {updateTable ,convertDigitsToLetter, getNumberOfPointsPerShip,checkPlacement } from './Modules.js';
+
 document.addEventListener("DOMContentLoaded", () => {
   //vobous way of creating a 12x12 2D array
   let grid = [];
@@ -19,12 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(objShips);
   });
 
-  const getNumberOfPointsPerShip = (str) => {
-    const value = str.indexOf(" ") + 2;
-    const nameOfShip = str.substring(0, str.indexOf(" "));
-    return { name: nameOfShip, value: Number(str[value]) };
-  };
-
   shipTypes.forEach((ship) => {
     ship.addEventListener("click", (event) => {
       const clicked_Div = event.currentTarget;
@@ -37,38 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const playerTable = document.getElementById("left");
   const EnemyTable = document.getElementById("right");
 
-  const convertDigitsToLetter = (value) => {
-    return String.fromCharCode(64 + value);
-  };
-
-  const updateTable = (grid, table, isHiddenDisplay) => {
-    for (
-      let iterateThroughRows = 0;
-      iterateThroughRows < grid.length;
-      iterateThroughRows++
-    ) {
-      for (
-        let iterateThroughCols = 0;
-        iterateThroughCols < grid[iterateThroughRows].length;
-        iterateThroughCols++
-      ) {
-        const cellValue = grid[iterateThroughRows][iterateThroughCols];
-        const tableRow = table.rows[iterateThroughRows + 1];
-        const tableCell = tableRow.cells[iterateThroughCols + 1];
-
-        tableCell.className = "";
-        tableCell.textContent = "";
-
-        if (cellValue === "XX") {
-          tableCell.classList.add("hit");
-        } else if (cellValue === "O") {
-          tableCell.textContent = "X";
-        } else if (cellValue !== null && isHiddenDisplay) {
-          tableCell.classList.add("ship");
-        }
-      }
-    }
-  };
+  
 
   let hardcoded_Enemy_Grid = [
     ["X", "X", "X", "X", null, null, null, null, null, null, null, null],
@@ -89,25 +54,64 @@ document.addEventListener("DOMContentLoaded", () => {
 
   playerTable.addEventListener("click", (event) => {
     const cell = event.target;
-    const row = cell.parentElement.rowIndex;
-    const col = cell.cellIndex;
+    const row = cell.parentElement.rowIndex - 1;
+    const col = cell.cellIndex - 1;
 
-    if (objShips.shipOrientation === "Vertical") {
-      for (
+    if (checkPlacement(grid, objShips, col, row)) {
+      if(objShips.shipOrientation === "Vertical"){
+        for (
         let numberOfSquares = 0;
         numberOfSquares < objShips.shipTypes.value;
         numberOfSquares++
-      ) {
-        grid[row + numberOfSquares - 1][col - 1] = "X";
-      }
-    } else {
-      for (
+        ) {
+          grid[row + numberOfSquares][col] = "X";
+        }
+      }else {
+        for (
         let numberOfSquares = 0;
         numberOfSquares < objShips.shipTypes.value;
         numberOfSquares++
-      ) {
-        grid[row - 1][col + numberOfSquares - 1] = "X";
+        ) {
+          grid[row][col + numberOfSquares] = "X";
+        }
+      } 
+    }else{
+      /*Gonna try and put red squares for a second to show that it doesnt work*/
+      let tempCells = [];
+
+      if(objShips.shipOrientation === "Vertical"){
+        for (
+        let numberOfSquares = 0;
+        numberOfSquares < objShips.shipTypes.value;
+        numberOfSquares++
+        ) {
+          if(row + numberOfSquares >= grid.length) break; 
+          if(grid[row + numberOfSquares][col]!== "X"){
+            grid[row + numberOfSquares][col] = "YYY";
+            tempCells.push([row + numberOfSquares, col]);
+          }  
+        }
+      }else {
+        for (
+        let numberOfSquares = 0;
+        numberOfSquares < objShips.shipTypes.value;
+        numberOfSquares++
+        ) {
+          if(col + numberOfSquares >= grid[0].length) break; 
+          if(grid[row][col + numberOfSquares] !== "X"){
+            grid[row][col + numberOfSquares] = "YYY";
+            tempCells.push([row, col + numberOfSquares]);
+          }
+        }
       }
+
+      updateTable(grid,playerTable,true);
+      setTimeout(() =>{
+        tempCells.forEach(([rowValue,colValue]) =>{
+          grid[rowValue][colValue] = null;
+        });
+        updateTable(grid,playerTable,true);
+      },1000)
     }
 
     updateTable(grid, playerTable, true);
