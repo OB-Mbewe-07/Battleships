@@ -223,3 +223,19 @@ table tr th:hover {
   background-color: var(--hit-color);
   transition: background-color 0.2s ease;
 }
+
+/*Phone design*/
+@media screen and (max-width:600px) {
+  .container-inner-selection-area {
+    display:block;
+  }
+
+  .nav .menu_ul {
+    gap: 8rem;
+  }
+
+  .table{
+    width: 90%;
+    margin-left: 5%;
+  }
+}
