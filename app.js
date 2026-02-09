@@ -133,19 +133,18 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   //player to enemy fire
-  EnemyTable.addEventListener("click", (event) =>{
+  EnemyTable.addEventListener("click", (event) => {
     const cell = event.target;
     const row = cell.parentElement.rowIndex;
     const col = cell.cellIndex;
     console.log(row + " " + col);
 
-    if (hardcoded_Enemy_Grid[row - 1][col-1] === "X") {
+    if (hardcoded_Enemy_Grid[row - 1][col - 1] === "X") {
       hardcoded_Enemy_Grid[row - 1][col - 1] = "XX";
     } else {
       hardcoded_Enemy_Grid[row - 1][col - 1] = "O";
     }
     console.log(hardcoded_Enemy_Grid);
-    updateTable(hardcoded_Enemy_Grid,EnemyTable,false);
-  })
-
+    updateTable(hardcoded_Enemy_Grid, EnemyTable, false);
+  });
 });
