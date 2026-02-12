@@ -68,86 +68,6 @@ a {
   color: var(--tertiary-colour);
 }
 
-.container-inner-selection-area {
-  display: flex;
-  justify-content: center;
-  align-items: start;
-}
-
-.Orientation_Wrapper button {
-  background-color: var(--secondary-colour);
-}
-
-.button-section {
-  display: flex;
-  flex-direction: column;
-  row-gap: 1rem;
-  margin: 0% 5% 5% 5%;
-  background-color: var(--secondary-colour);
-  color: var(--tertiary-colour);
-  padding: 0% 4% 4% 4%;
-  border-radius: 9px;
-  border: 2px dashed plum;
-}
-
-.button-section div {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  width: calc(100% + 1.9rem); /*still needs some work*/
-}
-
-.button-section div:hover {
-  background-color: var(--hover-secondary-colour);
-}
-
-.countainer-Section-Orientation {
-  margin: 0% 5% 5% 5%;
-  background-color: var(--secondary-colour);
-  color: var(--tertiary-colour);
-  padding: 0 5% 5% 5%;
-  border: 2px dashed plum;
-  border-radius: 9px;
-  display: flex;
-  flex-direction: column;
-}
-
-.Orientation_Wrapper {
-  display: flex;
-  font-size: x-large;
-}
-
-.Orientation_Wrapper select {
-  width: 100%;
-  border-radius: 9px;
-  border: 2px dashed plum;
-  height: 4rem;
-  color: var(--secondary-colour);
-}
-
-.Container_btn_Fire {
-  margin: 4%;
-  display: flex;
-  justify-content: center;
-}
-
-.Container_btn_Fire button {
-  width: 100%;
-  height: 4rem;
-  border-radius: 9px;
-  border: 2px dashed plum;
-  color: var(--secondary-colour);
-  margin-top: 10%;
-  cursor: pointer;
-}
-
-.Container_btn_Fire button:active {
-  transform: scale(1);
-}
-
-.container-menu {
-  justify-content: center;
-}
-
 .container-table {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, max-content));
@@ -192,23 +112,6 @@ table tr th:hover {
   background-color: var(--hover-primary-colour);
 }
 
-.container-inner-selection-area .button-section {
-  display: flex;
-  column-gap: 1.4rem;
-  justify-content: center;
-}
-
-.container-inner-selection-area .button-section div button {
-  background-color: var(--secondary-colour);
-}
-
-.countainer-select-fire-Section {
-  display: flex;
-  gap: 1.4rem;
-  justify-content: center;
-  margin: 32px;
-}
-
 .vertical-or-Horizontal {
   background-color: var(--secondary-colour);
   height: -webkit-fill-available;
@@ -230,17 +133,187 @@ table tr th:hover {
   transition: background-color 0.2s ease;
 }
 
+.setup-section{
+  padding: 1.5rem 1rem 1.5rem 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.control-panel{
+  background-color: var(--secondary-colour);
+  border-width: 2px;
+  border-style: dashed;
+  border-color: plum ;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 1110px;
+  overflow: hidden; 
+  box-shadow: 0px 10px 30px rgba(0,0,0,0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.control-panel:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
+}
+
+.panel-header{
+  background-color: rgba(0,0,0,0.18);
+  padding: 1rem 1.8rem 1rem 1.8rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(221,160,221,0.25);
+}
+
+.ship_header{
+  margin: 0;
+  font-size: 2rem;
+  color: var(--tertiary-colour);
+  letter-spacing: 1.2px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4) ;
+}
+
+.panel-content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 2rem 1.2rem 2rem;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.ships-container{
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0%;
+  min-width: 0;
+}
+
+.sub-header{
+  color: plum;
+  font-size: 1.3rem;
+  margin:0 0 1rem 0;
+  font-weight: 500;
+}
+
+.horizontal-ships{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.ship_type{
+  background-color: rgba(255,255,255,0.08);
+  border: 1px solid rgba(221,160,221,0.45);
+  border-radius: 10px;
+  padding: 1rem 1.4rem 1rem 1.4rem;
+  color: var(--tertiary-colour);
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  min-width:140px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+}
+
+.ship_type:hover{
+  background-color: rgba(255, 255, 255, 0.18);
+  border-color: plum;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+}
+
+.length{
+  background-color: rgba(221,160,221,0.3);
+  color: white;
+  font-weight: bold;
+  padding: 0.35rem 0.8rem 0.35rem 0.8rem;
+  border-radius: 999px;
+  font-size:0.95rem;
+  margin-left:0.8rem;
+}
+
+.controls-container{
+  display: flex;
+  align-items: center;
+  gap: 2rem; 
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.orientation-label{
+  color: var(--tertiary-colour);
+  font-size: 1.2rem;
+  margin-bottom:0.5rem;
+  display: block;
+}
+
+#shipOrientation{
+  min-width:160px;
+  padding: 0.9rem 1.2rem 0.9rem 1.2rem;
+  font-size: 1.1rem;
+  border: 2px dashed plum;
+  border-radius: 12px;
+  background-color: rgba(255,255,255,0.1);
+  color:var(--tertiary-colour);
+  cursor: pointer;
+  appearance: none;
+  /*SVG image into my css*/
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='%23e6e9ef' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 14px;
+}
+
+#shipOrientation option{
+  background-color: var(--secondary-colour);
+  color: var(--tertiary-colour);
+}
+
+.fire-button{
+  min-width: 180px;
+  padding: 1.1rem 2rem 1.1rem 2rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: white;
+  background-image: linear-gradient(135deg, #c75c9f,#9f3d7a);
+  border-radius: 12px;
+  border-style: none;
+  border-width: 0;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(199,92,159,0.4);
+  transition: all 0.25s ease;
+}
+
+.fire-button:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(199,92,159,0.6);
+  background-image: linear-gradient(135deg , #d876b2, #b44e8a);
+}
+
+.fire-button:active{
+  transform: translateY(1px);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+}
+
+
 /*Phone design*/
-@media screen and (max-width:600px) {
-  .container-inner-selection-area {
-    display:block;
-    width: 100%;
-    box-sizing: border-box;
+@media screen and (max-width:900px) {
+  .panel-content{
+    flex-direction: column;
+    align-items: stretch;
   }
 
-  .nav .menu_ul {
-    gap: 2rem;
-    flex-wrap: wrap;
+  .controls-container{
+    justify-content: center;
+    width: 100%;
+  }
+
+  .horizintal-ships{
+    justify-content: center;
   }
 
   .table{

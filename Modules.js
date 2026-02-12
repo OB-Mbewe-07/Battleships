@@ -28,35 +28,51 @@ const checkPlacement = (grid , obj , col, row) => {
     return true;
 }
 
+/*const detectSunk = (grid) =>{
+  //horizontal movement
+  for(let row = 0; row < grid.length; row++){
+    for(let col = 0; col <grid[0].length; col++){
+      if(grid[row][col] ===)
+    }
+  }
+
+  //Column movement
+  for(let col = 0; col <grid[0].length; col++){
+    for(let row = 0; row < grid.length; row++){
+
+    }
+  }
+}*/
+
 const updateTable = (grid, table, isHiddenDisplay) => {
+  for (
+    let iterateThroughRows = 0;
+    iterateThroughRows < grid.length;
+    iterateThroughRows++
+  ) {
     for (
-      let iterateThroughRows = 0;
-      iterateThroughRows < grid.length;
-      iterateThroughRows++
+      let iterateThroughCols = 0;
+      iterateThroughCols < grid[iterateThroughRows].length;
+      iterateThroughCols++
     ) {
-      for (
-        let iterateThroughCols = 0;
-        iterateThroughCols < grid[iterateThroughRows].length;
-        iterateThroughCols++
-      ) {
-        const cellValue = grid[iterateThroughRows][iterateThroughCols];
-        const tableRow = table.rows[iterateThroughRows + 1];
-        const tableCell = tableRow.cells[iterateThroughCols + 1];
+      const cellValue = grid[iterateThroughRows][iterateThroughCols];
+      const tableRow = table.rows[iterateThroughRows + 1];
+      const tableCell = tableRow.cells[iterateThroughCols + 1];
 
-        tableCell.className = "";
-        tableCell.textContent = "";
+      tableCell.className = "";
+      tableCell.textContent = "";
 
-        if (cellValue === "XX") {
-          tableCell.classList.add("hit");
-        } else if (cellValue === "O") {
-          tableCell.textContent = "X";
-        }else if (cellValue === "YYY"){
-          tableCell.classList.add("hit");  
-        } else if (cellValue !== null && isHiddenDisplay) {
-          tableCell.classList.add("ship");
-        }
+      if (cellValue === "XX") {
+        tableCell.classList.add("hit");
+      } else if (cellValue === "O") {
+        tableCell.textContent = "X";
+      }else if (cellValue === "YYY"){
+        tableCell.classList.add("hit");  
+      } else if (cellValue !== null && isHiddenDisplay) {
+        tableCell.classList.add("ship");
       }
     }
+  }
 };
 
 export {updateTable,convertDigitsToLetter,getNumberOfPointsPerShip,checkPlacement};

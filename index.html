@@ -21,30 +21,36 @@
         </div>
       </div>
     </section>
-    <section>
-      <div class="container-inner-selection-area">
-        <div class="button-section">
-          <div class="ships_header_container">
-            <h3 class="ships_header">ships</h3>
-          </div>
-          <div class="ship_type">Carrier [5]</div>
-          <div class="ship_type">Battleship [4]</div>
-          <div class="ship_type">Cruiser [3]</div>
-          <div class="ship_type">Submarine [3]</div>
-          <div class="ship_type">Destroyer [2]</div>
+    <section class="setup-section">
+      <div class="control-panel">
+        <div class="panel-header">
+          <h3 class="ship_header">Fleet Setup</h3>
         </div>
 
-        <div class="countainer-Section-Orientation">
-          <div class="ships_header_container">
-            <h3 class="ships_header">Ship Orientation</h3>
+        <div class="panel-content">
+          <div class="ships-container">
+            <h4 class="sub-header">Ships</h4>
+            <div class="ship-list horizontal-ships">
+              <div class="ship_type">Carrier <span class="length">[5]</span></div>
+              <div class="ship_type">Battleship <span class="length">[4]</span></div>
+              <div class="ship_type">Cruiser <span class="length">[3]</span></div>
+              <div class="ship_type">Submarine <span class="length">[3]</span></div>
+              <div class="ship_type">Destroyer <span class="length">[2]</span></div>
+            </div>
           </div>
-          <div class="Orientation_Wrapper">
-            <select name="" id="shipOrientation">
-              <option value="Vertical">Vertical</option>
-              <option value="Horizontal">Horizontal</option>
-            </select>
+
+          <div class="controls-container">
+            <div class="Orientation_Wrapper">
+              <label for="shipOrientation" class = "orientation-label">Orientation</label>
+              <select id="shipOrientation">
+                <option value="Horizontal">Horizontal</option>
+                <option value="Vertical">Vertical</option>
+              </select>
+            </div>
+            <div class="container_btn_Fire">
+              <button class="fire-button">Fire</button>
+            </div>
           </div>
-          <div class="Container_btn_Fire"><button>Fire</button></div>
         </div>
       </div>
     </section>
