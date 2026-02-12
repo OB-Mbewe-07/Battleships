@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let objShips = { shipTypes: {}, shipOrientation: "Vertical" };
   const shipOrientation = document.getElementById("shipOrientation");
-  const shipTypes = document.querySelectorAll(".button-section div");
+  const shipTypes = document.querySelectorAll(".ship_type");
 
   shipOrientation.addEventListener("change", (event) => {
     const chosenOrientation = event.target.value;
@@ -32,8 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
   //ship placement logic
   const playerTable = document.getElementById("left");
   const EnemyTable = document.getElementById("right");
-
-  
 
   let hardcoded_Enemy_Grid = [
     ["X", "X", "X", "X", null, null, null, null, null, null, null, null],
@@ -77,12 +75,13 @@ document.addEventListener("DOMContentLoaded", () => {
       } 
 
       //The assumption is that once we are here the placement is done
-      const AllShips = document.querySelectorAll(".button-section .ship_type");
+      const AllShips = document.querySelectorAll(".ship-list .ship_type");
       AllShips.forEach((ship) =>{
         if(ship.textContent.includes(objShips.shipTypes.name)){
           ship.remove();
         }
       });
+
     }else{
       /*Gonna try and put red squares for a second to show that it doesnt work*/
       let tempCells = [];
@@ -128,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   //firing logic
-  const btn_fire = document.querySelector(".Container_btn_Fire button");
+  const btn_fire = document.querySelector(".container_btn_Fire button");
   btn_fire.addEventListener("click", () => {
     let rowFire, colFire;
     do {

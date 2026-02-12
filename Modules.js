@@ -1,7 +1,22 @@
+const obj_AllShips = [
+  { shipName: "Carrier" , length:5},
+  { shipName: "Battleship" , length:4},
+  { shipName: "Cruiser" , length:3},
+  { shipName: "Submarine" , length:3},
+  { shipName: "Destroyer" , length:2}
+];
+
 const getNumberOfPointsPerShip = (str) => {
-    const value = str.indexOf(" ") + 2;
-    const nameOfShip = str.substring(0, str.indexOf(" "));
-    return { name: nameOfShip, value: Number(str[value]) };
+  /*Function is giving battleship [5] */
+  const space = str.indexOf(" ");
+  const shortenedStr = str.substring(0,space);
+  for(let element of obj_AllShips){
+    if(shortenedStr === element.shipName){
+      return { name: element.shipName, value: element.length };
+    }else{
+      console.log("Error");
+    }
+  }
 };
 
 const convertDigitsToLetter = (value) => {
@@ -14,14 +29,14 @@ const checkPlacement = (grid , obj , col, row) => {
         if(row + shipLength > grid.length) return false;
         for(let vert = 0; vert < shipLength; vert++){
             if(grid[row + vert][col] === "X"){
-                return false;
+              return false;
             }
         }
     }else{
         if(col + shipLength > grid[0].length) return false;
         for(let horizontal = 0; horizontal < shipLength; horizontal++){
             if(grid[row][col + horizontal] === "X"){
-                return false;
+              return false;
             }
         }
     }
