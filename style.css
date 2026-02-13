@@ -299,6 +299,9 @@ table tr th:hover {
   box-shadow: 0 3px 10px rgba(0,0,0,0.4);
 }
 
+#lobbySection{
+  display:none;
+}
 
 /*Phone design*/
 @media screen and (max-width:900px) {

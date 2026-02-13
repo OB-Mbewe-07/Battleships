@@ -1,4 +1,5 @@
 import {updateTable ,convertDigitsToLetter, getNumberOfPointsPerShip,checkPlacement } from './Modules.js';
+import { listPlayers,register,login } from './server.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   //vobous way of creating a 12x12 2D array
@@ -157,5 +158,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     console.log(hardcoded_Enemy_Grid);
     updateTable(hardcoded_Enemy_Grid, EnemyTable, false);
+  });
+
+  const frm = document.getElementById("loginform");
+  frm.addEventListener("submit", (event)=>{
+    event.preventDefault();
+    const name = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    
+    register(name,password);
+    listPlayers();
   });
 });

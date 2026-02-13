@@ -72,7 +72,9 @@ const updateTable = (grid, table, isHiddenDisplay) => {
     ) {
       const cellValue = grid[iterateThroughRows][iterateThroughCols];
       const tableRow = table.rows[iterateThroughRows + 1];
+      if (!tableRow) continue;
       const tableCell = tableRow.cells[iterateThroughCols + 1];
+      if (!tableCell) continue;
 
       tableCell.className = "";
       tableCell.textContent = "";
