@@ -170,6 +170,8 @@ table tr th:hover {
   color: var(--tertiary-colour);
   letter-spacing: 1.2px;
   text-shadow: 0 1px 4px rgba(0,0,0,0.4) ;
+  display: flex;
+  justify-content: center;
 }
 
 .panel-content{
@@ -311,10 +313,6 @@ table tr th:hover {
   margin:0 1rem;
 }
 
-#lobbySection{
-  display:none;
-}
-
 #selector_Section , .game_boards{
   display: none; 
 }
@@ -350,6 +348,63 @@ table tr th:hover {
   font-size: 1.05rem;
   margin-left: 1rem;
 }
+
+.parentHeader{
+  display: flex;
+}
+
+.lobbySection #middle{
+  justify-content: center;
+}
+
+#playerList , #InviteList{
+  list-style: none;
+  margin: 0 1.7%;
+  padding: 0;
+  min-height: 80px;
+  background: rgba(0,0,0,0.15);
+  border: 1px dashed plum;
+  border-radius: 6px;
+  padding: 0.8rem;
+  
+}
+
+#playerList li, #InviteList li{
+  padding: 0.6rem 0.9rem;
+  background: rgba(255,255,255,0.08);
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+#playerList li, #InviteList li:hover{
+  background: rgba(255,255,255,0.15);
+}
+
+#logoutBtn{
+  padding: 0.9rem 2.5rem;
+  font-size: 1.1rem;
+  background: var(--hover-secondary-colour);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin: 1rem 0;
+}
+
+.centerBtn{
+  display: flex;
+  justify-content: center;
+}
+
+#middle{
+  margin: 1rem 0;
+}
+
 
 /*Phone design*/
 @media screen and (max-width:900px) {

@@ -167,7 +167,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const password = document.getElementById("password").value;
     
     if(register(name, password) === "auth_success"){
-      const players = listPlayers();
+      document.getElementById("lobby_Section")
+      /*const players = listPlayers();
       const parent_Ul = document.getElementById("playerList");
       
       for(let element of players){
@@ -184,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
         child_li.appendChild(invitePlayer_btn); 
         parent_Ul.appendChild(child_li);
       }
-      document.getElementById("lobbySection").style.display = "block";
+      document.getElementById("lobbySection").style.display = "block";*/
     }
     
   });

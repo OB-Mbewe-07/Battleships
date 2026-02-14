@@ -476,22 +476,26 @@
             <button type="button" id="registerBtn">Register</button>
           </div>
         </form>
-
-      <div id = "lobbySection">
-        <h2>Lobby</h2>
-          <h3>Available Players</h3>
-        <ul id="playerList">
-
-        </ul>
-          <h3>Incoming Invites</h3>
-        <ul id = "InviteList">
-
-        </ul>
-        <button id="logoutBtn">Logout</button>
-      </div>
-      </div>
-      
     </section>
+
+    <section class = "setup-section" id = "lobby_Section">
+      <div class="control-panel">
+        <div id = "lobbySection">
+          <div class="panel-header">
+            <h4 class="ship_header">Lobby</h4>
+          </div>
+          <h4 class="ship_header" id = "middle">Available Players</h4>
+          <ul id="playerList"></ul>
+          <h4 class="ship_header" id = "middle">InviteList</h4>
+          <ul id = "InviteList"></ul>
+          <div class="centerBtn">
+            <button id="logoutBtn">Logout</button>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section> 
+    
     <script type="module" src="app.js"></script>
   </body>
 </html>

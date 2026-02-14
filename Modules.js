@@ -43,12 +43,10 @@ const checkPlacement = (grid , obj , col, row) => {
     return true;
 }
 
-/*const detectSunk = (grid) =>{
+/*const detectSunk = (grid, gridRow , gridCol) =>{
   //horizontal movement
   for(let row = 0; row < grid.length; row++){
-    for(let col = 0; col <grid[0].length; col++){
-      if(grid[row][col] ===)
-    }
+    
   }
 
   //Column movement
