@@ -4,25 +4,28 @@ ws.addEventListener("open", ()=>{
     console.log("connected to battleship server!")
 })
 
-let objServerMessages = {loginName : null, loginPassword};
+let objServerMessages = {loginName : null, loginPassword: null};
 ws.addEventListener("message", (event)=>{
     try{
         const data = JSON.parse(event.data);
         console.log("Server sent: ", data);
 
-        if(data.type === "auth_success"){
-            console.log("Logged in as:", data.user.username);
-            //dom in server code this is because it wasnt moving immediately when i had to login before hand
-            document.querySelectorAll(".setup-section").forEach(section => {
-                section.style.display = "none";
-            });
-            document.getElementById("lobby_Section").style.display = "flex";
-        }else if(data.type === "auth_error"){
-            console.log("Error in the system: " , data.message);
-            login(objServerMessages.loginName, objServerMessages.loginPassword);
-        }else if(data.type === "player_list"){
-            console.log("Available players: ",data.players)
-            
+        switch(data.type){
+            case "auth_success":
+                console.log("Logged in as:", data.user.username);
+                //dom in server code this is because it wasnt moving immediately when i had to login before hand
+                document.querySelectorAll(".setup-section").forEach(section => {
+                    section.style.display = "none";
+                });
+                document.getElementById("lobby_Section").style.display = "flex";
+                break; 
+            case "auth_error":
+                console.log("Error in the system: " , data.message);
+                login(objServerMessages.loginName, objServerMessages.loginPassword);
+                break; 
+            case "player_list":
+                console.log("Available players: ",data.players)
+                break; 
         }
     } catch(err){
         console.error("error parsing server message:", err);
