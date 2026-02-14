@@ -166,6 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const name = document.getElementById("username").value;
     const password = document.getElementById("password").value;
     register(name,password);
+    listPlayers();
   });
 });
 

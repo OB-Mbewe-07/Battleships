@@ -409,6 +409,18 @@ table tr th:hover {
   margin: 1rem 0;
 }
 
+.Player_li{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+}
+
+.button_req{
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
 
 /*Phone design*/
 @media screen and (max-width:900px) {

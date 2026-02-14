@@ -18,13 +18,39 @@ ws.addEventListener("message", (event)=>{
                     section.style.display = "none";
                 });
                 document.getElementById("lobby_Section").style.display = "flex";
+                listPlayers();
                 break; 
             case "auth_error":
                 console.log("Error in the system: " , data.message);
                 login(objServerMessages.loginName, objServerMessages.loginPassword);
                 break; 
             case "player_list":
-                console.log("Available players: ",data.players)
+                console.log("Available players: ",data.players); 
+                let ul_Players = document.getElementById("playerList");
+                
+                for(let player of data.players){
+                    let li_players = document.createElement("li");
+                    li_players.classList.add("Player_li");
+
+                    let spanValue = document.createElement("span");
+                    spanValue.textContent = player.username;
+
+                    let buttonReq = document.createElement("Button");
+                    buttonReq.textContent = "Request Match";
+                    buttonReq.classList.add("button_req");
+                    
+                    buttonReq.addEventListener("click", () =>{
+                        console.log("Request sent to: ",player.username);
+                        ws.send(JSON.stringify({
+                            type: "send_invite",
+                            targetUsername: player.username
+                        }));
+                    });
+
+                    li_players.appendChild(spanValue);
+                    li_players.appendChild(buttonReq);
+                    ul_Players.appendChild(li_players);
+                }
                 break; 
         }
     } catch(err){
