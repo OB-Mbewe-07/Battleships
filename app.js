@@ -165,32 +165,12 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
     const name = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-    
-    if(register(name, password) === "auth_success"){
-      document.querySelectorAll(".setup-section").forEach(section => {
-        section.style.display = "none";
-      });
-
-      document.getElementById("lobby_Section").style.display = "flex";
-      /*const players = listPlayers();
-      const parent_Ul = document.getElementById("playerList");
-      
-      for(let element of players){
-        const invitePlayer_btn = document.createElement("button");
-        const child_li = document.createElement("li");
-
-        invitePlayer_btn.textContent = "Invite";
-        child_li.textContent = element + " ";
-        
-        invitePlayer_btn.addEventListener("click" ,() =>{
-          sendInvite(element); //element is a single player player from playrs
-        });
-
-        child_li.appendChild(invitePlayer_btn); 
-        parent_Ul.appendChild(child_li);
-      }
-      document.getElementById("lobbySection").style.display = "block";*/
-    }
-    
+    register(name,password);
   });
 });
+
+
+  
+
+
+

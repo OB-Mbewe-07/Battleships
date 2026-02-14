@@ -4,7 +4,7 @@ ws.addEventListener("open", ()=>{
     console.log("connected to battleship server!")
 })
 
-let objServerMessages = {loginName : null, error: null, players : null , dataType : null}; //Stores the latest message per message group
+let objServerMessages = {loginName : null, loginPassword};
 ws.addEventListener("message", (event)=>{
     try{
         const data = JSON.parse(event.data);
@@ -12,15 +12,17 @@ ws.addEventListener("message", (event)=>{
 
         if(data.type === "auth_success"){
             console.log("Logged in as:", data.user.username);
-            objServerMessages.loginName = data.user.username;
-            objServerMessages.dataType = data.type;
+            //dom in server code this is because it wasnt moving immediately when i had to login before hand
+            document.querySelectorAll(".setup-section").forEach(section => {
+                section.style.display = "none";
+            });
+            document.getElementById("lobby_Section").style.display = "flex";
         }else if(data.type === "auth_error"){
             console.log("Error in the system: " , data.message);
-            objServerMessages.error = data.message;
-            objServerMessages.dataType = data.type;
+            login(objServerMessages.loginName, objServerMessages.loginPassword);
         }else if(data.type === "player_list"){
             console.log("Available players: ",data.players)
-            objServerMessages.players = data.players;
+            
         }
     } catch(err){
         console.error("error parsing server message:", err);
@@ -48,14 +50,15 @@ const login = (username,password) =>{
 }
 
 const register = (username,password) =>{
+    objServerMessages.loginName = username;
+    objServerMessages.loginPassword = password;
+
     if(ws.readyState === WebSocket.OPEN){
         ws.send(JSON.stringify({
             type: "register",
             username,
             password
         }));
-
-        return objServerMessages.dataType;
     }else{
         console.warn("Socket is not ready yet")
     }
