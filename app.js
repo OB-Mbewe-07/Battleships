@@ -167,7 +167,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const password = document.getElementById("password").value;
     
     if(register(name, password) === "auth_success"){
-      document.getElementById("lobby_Section")
+      document.querySelectorAll(".setup-section").forEach(section => {
+        section.style.display = "none";
+      });
+
+      document.getElementById("lobby_Section").style.display = "flex";
       /*const players = listPlayers();
       const parent_Ul = document.getElementById("playerList");
       

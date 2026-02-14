@@ -396,6 +396,10 @@ table tr th:hover {
   margin: 1rem 0;
 }
 
+#lobby_Section{
+  display: none;
+}
+
 .centerBtn{
   display: flex;
   justify-content: center;
