@@ -14,7 +14,7 @@ const getNumberOfPointsPerShip = (str) => {
     if(shortenedStr === element.shipName){
       return { name: element.shipName, value: element.length };
     }else{
-      console.log("Error");
+      console.error("Error");
     }
   }
 };
@@ -26,19 +26,19 @@ const convertDigitsToLetter = (value) => {
 const checkPlacement = (grid , obj , col, row) => {
     const shipLength = obj.shipTypes.value;
     if(obj.shipOrientation === "Vertical"){
-        if(row + shipLength > grid.length) return false;
-        for(let vert = 0; vert < shipLength; vert++){
-            if(grid[row + vert][col] === "X"){
-              return false;
-            }
+      if(row + shipLength > grid.length) return false;
+      for(let vert = 0; vert < shipLength; vert++){
+        if(grid[row + vert][col] === "X"){
+          return false;
         }
+      }
     }else{
-        if(col + shipLength > grid[0].length) return false;
-        for(let horizontal = 0; horizontal < shipLength; horizontal++){
-            if(grid[row][col + horizontal] === "X"){
-              return false;
-            }
-        }
+      if(col + shipLength > grid[0].length) return false;
+      for(let horizontal = 0; horizontal < shipLength; horizontal++){
+          if(grid[row][col + horizontal] === "X"){
+            return false;
+          }
+      }
     }
     return true;
 }
@@ -60,30 +60,21 @@ const checkPlacement = (grid , obj , col, row) => {
 }*/
 
 const updateTable = (grid, table, isHiddenDisplay) => {
-  for (
-    let iterateThroughRows = 0;
-    iterateThroughRows < grid.length;
-    iterateThroughRows++
-  ) {
-    for (
-      let iterateThroughCols = 0;
-      iterateThroughCols < grid[iterateThroughRows].length;
-      iterateThroughCols++
-    ) {
+  for (let iterateThroughRows = 0; iterateThroughRows < grid.length; iterateThroughRows++) {
+    for (let iterateThroughCols = 0;iterateThroughCols < grid[iterateThroughRows].length;iterateThroughCols++) {
+
       const cellValue = grid[iterateThroughRows][iterateThroughCols];
       const tableRow = table.rows[iterateThroughRows + 1];
-      if (!tableRow) continue;
       const tableCell = tableRow.cells[iterateThroughCols + 1];
-      if (!tableCell) continue;
 
       tableCell.className = "";
       tableCell.textContent = "";
 
-      if (cellValue === "XX") {
+      if (cellValue === "XX") { // this means you have hit
         tableCell.classList.add("hit");
-      } else if (cellValue === "O") {
+      } else if (cellValue === "O") { // O means the user has missed
         tableCell.textContent = "X";
-      }else if (cellValue === "YYY"){
+      }else if (cellValue === "YYY"){ //means that you have improper placement of ships and should place again
         tableCell.classList.add("hit");  
       } else if (cellValue !== null && isHiddenDisplay) {
         tableCell.classList.add("ship");

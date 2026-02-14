@@ -1,5 +1,5 @@
 import {updateTable ,convertDigitsToLetter, getNumberOfPointsPerShip,checkPlacement } from './Modules.js';
-import { listPlayers,register,login } from './server.js';
+import { listPlayers,register,login, sendInvite } from './server.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   //vobous way of creating a 12x12 2D array
@@ -166,7 +166,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const name = document.getElementById("username").value;
     const password = document.getElementById("password").value;
     
-    register(name,password);
-    listPlayers();
+    if(register(name, password) === "auth_success"){
+      const players = listPlayers();
+      const parent_Ul = document.getElementById("playerList");
+      
+      for(let element of players){
+        const invitePlayer_btn = document.createElement("button");
+        const child_li = document.createElement("li");
+
+        invitePlayer_btn.textContent = "Invite";
+        child_li.textContent = element + " ";
+        
+        invitePlayer_btn.addEventListener("click" ,() =>{
+          sendInvite(element); //element is a single player player from playrs
+        });
+
+        child_li.appendChild(invitePlayer_btn); 
+        parent_Ul.appendChild(child_li);
+      }
+      document.getElementById("lobbySection").style.display = "block";
+    }
+    
   });
 });
