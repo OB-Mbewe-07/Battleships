@@ -419,6 +419,7 @@ table tr th:hover {
 .button_req{
   padding: 4px 10px;
   cursor: pointer;
+  margin-left: 1rem;
 }
 
 

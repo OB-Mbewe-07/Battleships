@@ -1,7 +1,8 @@
-import {updateTable ,convertDigitsToLetter, getNumberOfPointsPerShip,checkPlacement } from './Modules.js';
-import { listPlayers,register,login, sendInvite } from './server.js';
+import {updateTable ,convertDigitsToLetter, getNumberOfPointsPerShip,checkPlacement , initialiseShips} from './Modules.js';
+import { listPlayers,register, sendInvite, sendShipPlacement  } from './server.js';
 
 document.addEventListener("DOMContentLoaded", () => {
+
   //vobous way of creating a 12x12 2D array
   let grid = [];
   const size = 12;
@@ -11,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
       grid[countRow][countCol] = null;
     }
   }
-
+  let ServerShipsObj = [];
   let objShips = { shipTypes: {}, shipOrientation: "Vertical" };
   const shipOrientation = document.getElementById("shipOrientation");
   const shipTypes = document.querySelectorAll(".ship_type");
@@ -57,7 +58,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const col = cell.cellIndex - 1;
 
     if (checkPlacement(grid, objShips, col, row)) {
+      ServerShipsObj.push({type: objShips.shipTypes.name , start: convertDigitsToLetter(col) + row, orientation: objShips.shipOrientation});
       if(objShips.shipOrientation === "Vertical"){
+        initialiseShips(objShips.shipTypes.name, col, row, "Vertical");
         for (
         let numberOfSquares = 0;
         numberOfSquares < objShips.shipTypes.value;
@@ -66,6 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
           grid[row + numberOfSquares][col] = "X";
         }
       }else {
+        initialiseShips(objShips.shipTypes.name, col, row, "Horizontal");
         for (
         let numberOfSquares = 0;
         numberOfSquares < objShips.shipTypes.value;
@@ -82,6 +86,10 @@ document.addEventListener("DOMContentLoaded", () => {
           ship.remove();
         }
       });
+
+      if(AllShips.length === 0){
+        sendShipPlacement(ServerShipsObj);
+      }
 
     }else{
       /*Gonna try and put red squares for a second to show that it doesnt work*/

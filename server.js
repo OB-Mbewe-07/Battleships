@@ -50,8 +50,74 @@ ws.addEventListener("message", (event)=>{
                     li_players.appendChild(spanValue);
                     li_players.appendChild(buttonReq);
                     ul_Players.appendChild(li_players);
+                    buttonReq.textContent = "Waiting";
                 }
-                break; 
+                break;
+            case "invite_received":
+                let ul_Players_Invite = document.getElementById("InviteList");
+                // Create li
+                let li_players = document.createElement("li");
+                li_players.classList.add("Player_li");
+
+                // Create name span
+                let spanValue = document.createElement("span");
+                spanValue.textContent = data.from;
+
+                // Create Accept button
+                let buttonAccept = document.createElement("button");
+                buttonAccept.textContent = "Accept";
+                buttonAccept.classList.add("button_req");
+
+                // Create Decline button
+                let buttonDecline = document.createElement("button");
+                buttonDecline.textContent = "Decline";
+                buttonDecline.classList.add("button_req");
+
+                // Append elements together
+                li_players.appendChild(spanValue);
+                li_players.appendChild(buttonAccept);
+                li_players.appendChild(buttonDecline);
+
+                ul_Players_Invite.appendChild(li_players);
+
+                buttonAccept.addEventListener("click", ()=>{
+                    ws.send(JSON.stringify({
+                        type: "accept_invite",
+                        inviteId: "uuid"
+                    }));     
+                });
+
+                buttonDecline.addEventListener("click", () =>{
+                    ws.send(JSON.stringify({
+                        type: "decline_invite",
+                        inviteId: "uuid"
+                    })); 
+                }); 
+                break;
+            case "invite_error":
+                alert(data.message);
+                break;
+            case "invite_accepted":
+                document.querySelectorAll("#lobby_Section").forEach(section => {
+                    section.style.display = "none";
+                });
+                document.getElementById("selector_Section").style.display = "flex";
+                document.getElementById("game_boards").style.display = "flex";
+                break;
+            case "ships_accepted":
+                alert("Ships have been accepted");
+                break;
+            case "waiting_for_opponent":
+                alert("We are waiting for opponent");
+                break;
+            case "game_start":
+                alert("The game has started:");
+                if(data.yourTurn === true){
+                    alert("Fire at your openents board");
+                }
+            case "shot_result":
+                break;
+            
         }
     } catch(err){
         console.error("error parsing server message:", err);
@@ -112,4 +178,20 @@ const acceptInvite = (inviteId) =>{
     }
 }
 
-export {listPlayers, register, login, sendInvite,acceptInvite};
+const sendShipPlacement = (obj) =>{
+    if(ws.readyState === WebSocket.OPEN){
+        const finalObj = {
+            type: "place_ships",
+            ships: obj
+        }
+        ws.send(JSON.stringify(finalObj));
+    } 
+}
+
+const sendShotFire = (coordinate) =>{
+    if(ws.readyState === WebSocket.OPEN){
+       ws.send(JSON.stringify({type: "shoot", coordinate}));
+    }
+}
+
+export {listPlayers, register, login, sendInvite, acceptInvite, sendShipPlacement};
