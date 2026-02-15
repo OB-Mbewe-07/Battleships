@@ -1,9 +1,22 @@
+import { getPlayerGrid, setNewPlayerGrid } from "./app";
+import {convertCoordinateToIndexes, updateTable} from "./Modules"
+
 const ws = new WebSocket("ws://localhost:3000");
+
+let grid = [];
+const size = 12;
+for (let countRow = 0; countRow < size; countRow++) {
+    grid[countRow] = [];
+    for (let countCol = 0; countCol < size; countCol++) {
+        grid[countRow][countCol] = null;
+    }
+}
 
 ws.addEventListener("open", ()=>{
     console.log("connected to battleship server!")
 })
-
+let serverState = ["Registrations" , "Lobby", "Game_Setup", "Gameplay"];
+let stateVar = serverState[0];
 let objServerMessages = {loginName : null, loginPassword: null};
 ws.addEventListener("message", (event)=>{
     try{
@@ -12,6 +25,7 @@ ws.addEventListener("message", (event)=>{
 
         switch(data.type){
             case "auth_success":
+                const current_UserName = data.user.username;
                 console.log("Logged in as:", data.user.username);
                 //dom in server code this is because it wasnt moving immediately when i had to login before hand
                 document.querySelectorAll(".setup-section").forEach(section => {
@@ -19,6 +33,7 @@ ws.addEventListener("message", (event)=>{
                 });
                 document.getElementById("lobby_Section").style.display = "flex";
                 listPlayers();
+                stateVar = serverState[0];
                 break; 
             case "auth_error":
                 console.log("Error in the system: " , data.message);
@@ -52,6 +67,7 @@ ws.addEventListener("message", (event)=>{
                     ul_Players.appendChild(li_players);
                     buttonReq.textContent = "Waiting";
                 }
+                stateVar = serverState[1];
                 break;
             case "invite_received":
                 let ul_Players_Invite = document.getElementById("InviteList");
@@ -93,6 +109,7 @@ ws.addEventListener("message", (event)=>{
                         inviteId: "uuid"
                     })); 
                 }); 
+                stateVar = serverState[1];
                 break;
             case "invite_error":
                 alert(data.message);
@@ -109,13 +126,48 @@ ws.addEventListener("message", (event)=>{
                 break;
             case "waiting_for_opponent":
                 alert("We are waiting for opponent");
+                stateVar = serverState[2];
                 break;
             case "game_start":
                 alert("The game has started:");
                 if(data.yourTurn === true){
                     alert("Fire at your openents board");
                 }
+                stateVar = serverState[2];
             case "shot_result":
+                const EnemyTable = document.getElementById("right");
+                const row = convertCoordinateToIndexes(data.coordinate).row;
+                const col = convertCoordinateToIndexes(data.coordinate).col;
+                if(data.hit){
+                    grid[row][col] = "XX";  
+                }else{
+                    grid[row][col] = "O";
+                }
+                updateTable(grid, EnemyTable, false); 
+                stateVar = serverState[3];
+                break;
+            case "shot_fired":
+                const playerTable = document.getElementById("left");
+                let playerGrid = getPlayerGrid();
+                let OpponentShotRow = convertCoordinateToIndexes(data.coordinate).row;
+                let OpponentShotCol = convertCoordinateToIndexes(data.coordinate).col;
+
+                if(playerGrid[OpponentShotRow][OpponentShotCol] === "X"){
+                    playerGrid[OpponentShotRow][OpponentShotCol] = "O";
+                    setNewPlayerGrid(playerGrid);
+                    updateTable(playerGrid,playerTable,true);
+                }
+                break;
+            case "turn_change":
+                if(current_UserName === data.currentTurn){
+                    alert("It is your turn to play now");
+                }else{
+                    alert("it is the opponents turn now");
+                }
+                break;
+            case "game_over":
+                alert(data.winner);
+                stateVar = serverState[0];
                 break;
             
         }
@@ -194,4 +246,8 @@ const sendShotFire = (coordinate) =>{
     }
 }
 
-export {listPlayers, register, login, sendInvite, acceptInvite, sendShipPlacement};
+const getGameState = () =>{
+    return stateVar;
+}
+
+export {listPlayers,getGameState, register, login, sendInvite, acceptInvite, sendShipPlacement, sendShotFire};

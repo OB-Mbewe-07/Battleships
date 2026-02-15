@@ -32,6 +32,16 @@ const convertDigitsToLetter = (value) => {
     return String.fromCharCode(64 + value);
 };
 
+const convertCoordinateToIndexes = (coordinate) =>{
+  const colLetter = coordinate[0].toUpperCase();
+  const rowNumber = parseInt(coordinate.substring(1));
+
+  const col = colLetter.charCodeAt(0) - 65;
+  const row = rowNumber - 1;
+
+  return {row, col};
+}
+
 const checkPlacement = (grid , obj , col, row) => {
     const shipLength = obj.shipTypes.value;
     if(obj.shipOrientation === "Vertical"){
@@ -109,5 +119,5 @@ const updateTable = (grid, table, isHiddenDisplay) => {
   }
 };
 
-export {updateTable,convertDigitsToLetter,getNumberOfPointsPerShip,checkPlacement, initialiseShips, detectSunk , findShipByCoordinate};
+export {updateTable,convertDigitsToLetter,getNumberOfPointsPerShip,checkPlacement,convertCoordinateToIndexes, initialiseShips, detectSunk , findShipByCoordinate};
 

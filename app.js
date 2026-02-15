@@ -1,5 +1,5 @@
 import {updateTable ,convertDigitsToLetter, getNumberOfPointsPerShip,checkPlacement , initialiseShips} from './Modules.js';
-import { listPlayers,register, sendInvite, sendShipPlacement  } from './server.js';
+import { getGameState, listPlayers,register, sendInvite, sendShipPlacement,sendShotFire } from './server.js';
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -12,6 +12,15 @@ document.addEventListener("DOMContentLoaded", () => {
       grid[countRow][countCol] = null;
     }
   }
+
+  const getPlayerGrid = () =>{
+    return grid;
+  };
+
+  const setNewPlayerGrid = (newGrid) =>{
+    grid = newGrid;
+  }
+  
   let ServerShipsObj = [];
   let objShips = { shipTypes: {}, shipOrientation: "Vertical" };
   const shipOrientation = document.getElementById("shipOrientation");
@@ -155,17 +164,13 @@ document.addEventListener("DOMContentLoaded", () => {
   //player to enemy fire
   EnemyTable.addEventListener("click", (event) => {
     const cell = event.target;
-    const row = cell.parentElement.rowIndex;
-    const col = cell.cellIndex;
-    console.log(row + " " + col);
-
-    if (hardcoded_Enemy_Grid[row - 1][col - 1] === "X") {
-      hardcoded_Enemy_Grid[row - 1][col - 1] = "XX";
-    } else {
-      hardcoded_Enemy_Grid[row - 1][col - 1] = "O";
+    const row = cell.parentElement.rowIndex - 1;
+    const col = cell.cellIndex - 1;
+    
+    if(getGameState() === "Gameplay"){
+      const coordinate = convertDigitsToLetter(col) + (row + 1);
+      sendShotFire(coordinate);
     }
-    console.log(hardcoded_Enemy_Grid);
-    updateTable(hardcoded_Enemy_Grid, EnemyTable, false);
   });
 
   const frm = document.getElementById("loginform");
@@ -177,6 +182,8 @@ document.addEventListener("DOMContentLoaded", () => {
     listPlayers();
   });
 });
+
+export {getPlayerGrid , setNewPlayerGrid};
 
 
   
