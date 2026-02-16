@@ -18,6 +18,7 @@ ws.addEventListener("open", ()=>{
 let serverState = ["Registrations" , "Lobby", "Game_Setup", "Gameplay"];
 let stateVar = serverState[0];
 let objServerMessages = {loginName : null, loginPassword: null};
+let current_UserName = null;
 ws.addEventListener("message", (event)=>{
     try{
         const data = JSON.parse(event.data);
@@ -25,7 +26,7 @@ ws.addEventListener("message", (event)=>{
 
         switch(data.type){
             case "auth_success":
-                const current_UserName = data.user.username;
+                current_UserName = data.user.username;
                 console.log("Logged in as:", data.user.username);
                 //dom in server code this is because it wasnt moving immediately when i had to login before hand
                 document.querySelectorAll(".setup-section").forEach(section => {
@@ -42,6 +43,7 @@ ws.addEventListener("message", (event)=>{
             case "player_list":
                 console.log("Available players: ",data.players); 
                 let ul_Players = document.getElementById("playerList");
+                ul_Players.innerHTML = "";
                 
                 for(let player of data.players){
                     let li_players = document.createElement("li");
@@ -99,7 +101,7 @@ ws.addEventListener("message", (event)=>{
                 buttonAccept.addEventListener("click", ()=>{
                     ws.send(JSON.stringify({
                         type: "accept_invite",
-                        inviteId: "uuid"
+                        inviteId: data.inviteId
                     }));     
                 });
 
@@ -119,7 +121,7 @@ ws.addEventListener("message", (event)=>{
                     section.style.display = "none";
                 });
                 document.getElementById("selector_Section").style.display = "flex";
-                document.getElementById("game_boards").style.display = "flex";
+                document.querySelector(".game_boards").style.display = "grid";
                 break;
             case "ships_accepted":
                 alert("Ships have been accepted");
@@ -133,7 +135,8 @@ ws.addEventListener("message", (event)=>{
                 if(data.yourTurn === true){
                     alert("Fire at your openents board");
                 }
-                stateVar = serverState[2];
+                stateVar = serverState[3];
+                break;
             case "shot_result":
                 const EnemyTable = document.getElementById("right");
                 const row = convertCoordinateToIndexes(data.coordinate).row;
@@ -214,7 +217,6 @@ const register = (username,password) =>{
 const listPlayers = () =>{
     if(ws.readyState === WebSocket.OPEN){
         ws.send(JSON.stringify({type: "list_players"}));
-        return objServerMessages.players;
     }
 }
 

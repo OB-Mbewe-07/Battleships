@@ -1,26 +1,25 @@
 import {updateTable ,convertDigitsToLetter, getNumberOfPointsPerShip,checkPlacement , initialiseShips} from './Modules.js';
 import { getGameState, listPlayers,register, sendInvite, sendShipPlacement,sendShotFire } from './server.js';
 
-document.addEventListener("DOMContentLoaded", () => {
-
   //vobous way of creating a 12x12 2D array
-  let grid = [];
-  const size = 12;
-  for (let countRow = 0; countRow < size; countRow++) {
-    grid[countRow] = [];
-    for (let countCol = 0; countCol < size; countCol++) {
-      grid[countRow][countCol] = null;
-    }
+let grid = [];
+const size = 12;
+for (let countRow = 0; countRow < size; countRow++) {
+  grid[countRow] = [];
+  for (let countCol = 0; countCol < size; countCol++) {
+    grid[countRow][countCol] = null;
   }
+}
 
-  const getPlayerGrid = () =>{
-    return grid;
-  };
+const getPlayerGrid = () =>{
+  return grid;
+};
 
-  const setNewPlayerGrid = (newGrid) =>{
-    grid = newGrid;
-  }
-  
+const setNewPlayerGrid = (newGrid) =>{
+  grid = newGrid;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
   let ServerShipsObj = [];
   let objShips = { shipTypes: {}, shipOrientation: "Vertical" };
   const shipOrientation = document.getElementById("shipOrientation");
@@ -67,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const col = cell.cellIndex - 1;
 
     if (checkPlacement(grid, objShips, col, row)) {
-      ServerShipsObj.push({type: objShips.shipTypes.name , start: convertDigitsToLetter(col) + row, orientation: objShips.shipOrientation});
+      ServerShipsObj.push({type: objShips.shipTypes.name , start: convertDigitsToLetter(col + 1) + (row + 1), orientation: objShips.shipOrientation});
       if(objShips.shipOrientation === "Vertical"){
         initialiseShips(objShips.shipTypes.name, col, row, "Vertical");
         for (
@@ -95,8 +94,8 @@ document.addEventListener("DOMContentLoaded", () => {
           ship.remove();
         }
       });
-
-      if(AllShips.length === 0){
+      const remainingShips = document.querySelectorAll(".ship-list .ship_type");
+      if(remainingShips.length === 0){
         sendShipPlacement(ServerShipsObj);
       }
 
@@ -141,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateTable(grid, playerTable, true);
     console.log(grid);
-    console.log(convertDigitsToLetter(col) + " " + row);
+    console.log(convertDigitsToLetter(col + 1) + " " + (row+1));
   });
 
   //firing logic
@@ -179,7 +178,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const name = document.getElementById("username").value;
     const password = document.getElementById("password").value;
     register(name,password);
-    listPlayers();
   });
 });
 

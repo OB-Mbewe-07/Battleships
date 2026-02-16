@@ -13,10 +13,10 @@ const getNumberOfPointsPerShip = (str) => {
   for(let element of obj_AllShips){
     if(shortenedStr === element.shipName){
       return { name: element.shipName, value: element.length };
-    }else{
-      console.error("Error");
     }
   }
+  console.error("ship was not found");
+  return null; 
 };
 
 const initialiseShips = (shipName,col, row, orientation) =>{
@@ -64,6 +64,7 @@ const checkPlacement = (grid , obj , col, row) => {
 
 const findShipByCoordinate = (row, col) =>{
   for(let ship of obj_AllShips){
+    if(!shipp.placement) continue;
     const startCol =  ship.placement.charCodeAt(0) - 65;
     const startRow = parseInt(ship.placement.substring(1)) - 1;
     for(let i = 0; i < ship.length; i++){
@@ -76,9 +77,10 @@ const findShipByCoordinate = (row, col) =>{
 }
 
 const detectSunk = (grid, shipObj) =>{
+  if(!shipObj.placement) return false;
   const startValue = shipObj.placement;
-  const length = ship.length;
-  const isVertical = ship.isVertical;
+  const length = shipObj.length;
+  const isVertical = shipObj.isVertical;
 
   const startCol = startValue.charCodeAt(0) - 65;
   const startRow = parseInt(startValue.substring(1)) - 1; //This is because the values technically start from 0
@@ -91,7 +93,7 @@ const detectSunk = (grid, shipObj) =>{
       return false;
     }
   }
-  console.log(ship.shipName + " has been sunk");
+  console.log(shipObj.shipName + " has been sunk");
   return true; 
 };
 
